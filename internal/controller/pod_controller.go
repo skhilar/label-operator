@@ -78,7 +78,7 @@ func (r *PodReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.R
 	regionLabel := node.Labels[addTopologyRegion]
 	labelShouldBePresent := pod.Annotations[addTopologyLabelAnnotation] == "true"
 	if labelShouldBePresent {
-		labelIsPresent := pod.Labels[addTopologyAvailabilityZone] == pod.Name
+		labelIsPresent := pod.Labels[addTopologyAvailabilityZone] == zoneLabel
 		if labelIsPresent {
 			log.Info("no update required")
 			return ctrl.Result{}, nil
